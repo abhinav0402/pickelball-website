@@ -11,6 +11,7 @@ import {
   Clock,
   Zap,
 } from "lucide-react";
+import Image from "next/image";
 
 const features = [
   {
@@ -72,37 +73,42 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-red-700 via-red-800 to-red-900">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-20 w-96 h-96 bg-amber-300 rounded-full blur-3xl" />
-        </div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 sm:py-32 lg:py-40">
+      <section className="relative overflow-hidden min-h-[600px] lg:min-h-[700px]">
+        <Image
+          src="/hero.jpg"
+          alt="People laughing and playing pickleball on vibrant courts"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/65 to-black/40" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 sm:py-32 lg:py-40 flex items-center min-h-[600px] lg:min-h-[700px]">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-sm font-medium text-white/90 mb-6">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-white/90 mb-6">
               <Zap className="h-4 w-4" aria-hidden="true" />
               Now open — Austin&apos;s newest pickleball destination
             </div>
-            <h1 className="font-[var(--font-display)] text-5xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-tight uppercase">
+            <h1 className="font-[var(--font-display)] text-5xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-tight uppercase drop-shadow-lg">
               Play. Shop. Eat.
               <br />
               <span className="text-amber-400">All Things Pickleball.</span>
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-white/80 leading-relaxed max-w-xl">
+            <p className="mt-6 text-lg sm:text-xl text-white/85 leading-relaxed max-w-xl drop-shadow">
               Premium courts, top gear, great food, and an incredible community.
               Your one-stop pickleball venue — welcome to DinkZone.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Link
                 href="/book-court"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-400 text-red-900 px-8 py-3.5 text-base font-bold hover:bg-amber-300 transition-colors duration-200"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-400 text-red-900 px-8 py-3.5 text-base font-bold hover:bg-amber-300 transition-colors duration-200 shadow-lg"
               >
                 Book a Court
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link
                 href="/shop"
-                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white px-8 py-3.5 text-base font-semibold hover:bg-white/10 transition-colors duration-200"
+                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/40 text-white px-8 py-3.5 text-base font-semibold hover:bg-white/15 backdrop-blur-sm transition-colors duration-200"
               >
                 Browse Pro Shop
               </Link>
