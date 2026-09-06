@@ -1,4 +1,4 @@
-import { Trophy, CalendarDays, Users, MapPin, Clock, Medal, ArrowRight } from "lucide-react";
+import { Trophy, CalendarDays, Users, Clock, Medal, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const upcomingTournaments = [
@@ -68,11 +68,10 @@ const weeklyLeagues = [
 export default function Tournaments() {
   return (
     <div className="bg-background min-h-screen">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-yellow-500 to-orange-600 py-16">
+      <div className="bg-gradient-to-r from-amber-600 to-red-700 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-white flex items-center gap-3">
-            <Trophy className="h-8 w-8" /> Tournaments & Leagues
+          <h1 className="font-[var(--font-display)] text-3xl sm:text-4xl font-bold text-white flex items-center gap-3 uppercase">
+            <Trophy className="h-8 w-8" aria-hidden="true" /> Tournaments & Leagues
           </h1>
           <p className="mt-3 text-lg text-white/80">
             Compete, climb the ranks, and win prizes. Events for every skill level.
@@ -81,24 +80,23 @@ export default function Tournaments() {
       </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 space-y-16">
-        {/* Upcoming Tournaments */}
-        <section>
-          <h2 className="text-2xl font-bold mb-6">Upcoming Tournaments</h2>
+        <section aria-labelledby="upcoming-heading">
+          <h2 id="upcoming-heading" className="font-[var(--font-display)] text-2xl font-bold mb-6 uppercase">Upcoming Tournaments</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {upcomingTournaments.map((t) => (
-              <div
+              <article
                 key={t.id}
-                className="rounded-2xl border border-border bg-background p-6 hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-500/5 transition-all"
+                className="rounded-2xl border border-border bg-card p-6 hover:border-amber-400 hover:shadow-lg hover:shadow-amber-500/5 transition-all duration-200"
               >
                 <div className="flex items-start justify-between">
                   <div>
                     <h3 className="font-bold text-lg">{t.name}</h3>
                     <div className="mt-2 flex flex-wrap gap-3 text-sm text-muted">
                       <span className="flex items-center gap-1">
-                        <CalendarDays className="h-3.5 w-3.5" /> {t.date}
+                        <CalendarDays className="h-3.5 w-3.5" aria-hidden="true" /> {t.date}
                       </span>
                       <span className="flex items-center gap-1">
-                        <Users className="h-3.5 w-3.5" /> {t.format}
+                        <Users className="h-3.5 w-3.5" aria-hidden="true" /> {t.format}
                       </span>
                     </div>
                   </div>
@@ -124,22 +122,19 @@ export default function Tournaments() {
                   </div>
                   <div>
                     <span className="text-muted">Prize Pool:</span>
-                    <span className="ml-1 font-medium text-yellow-600 dark:text-yellow-400">{t.prize}</span>
+                    <span className="ml-1 font-medium text-amber-600 dark:text-amber-400">{t.prize}</span>
                   </div>
                   <div>
                     <span className="text-muted">Spots Left:</span>
-                    <span className="ml-1 font-medium">
-                      {t.spotsLeft}/{t.totalSpots}
-                    </span>
+                    <span className="ml-1 font-medium">{t.spotsLeft}/{t.totalSpots}</span>
                   </div>
                 </div>
 
-                {/* Spots bar */}
-                <div className="mt-4">
+                <div className="mt-4" role="progressbar" aria-valuenow={t.totalSpots - t.spotsLeft} aria-valuemin={0} aria-valuemax={t.totalSpots} aria-label={`${t.totalSpots - t.spotsLeft} of ${t.totalSpots} spots filled`}>
                   <div className="h-2 rounded-full bg-surface overflow-hidden">
                     <div
-                      className={`h-full rounded-full transition-all ${
-                        t.spotsLeft === 0 ? "bg-red-500" : t.spotsLeft < 10 ? "bg-yellow-500" : "bg-green-500"
+                      className={`h-full rounded-full transition-all duration-300 ${
+                        t.spotsLeft === 0 ? "bg-red-500" : t.spotsLeft < 10 ? "bg-amber-500" : "bg-green-500"
                       }`}
                       style={{ width: `${((t.totalSpots - t.spotsLeft) / t.totalSpots) * 100}%` }}
                     />
@@ -148,22 +143,21 @@ export default function Tournaments() {
 
                 <button
                   disabled={t.status === "full"}
-                  className={`mt-5 w-full rounded-full py-2.5 text-sm font-semibold transition-colors ${
+                  className={`mt-5 w-full rounded-full py-2.5 text-sm font-semibold transition-colors duration-200 ${
                     t.status === "full"
-                      ? "bg-surface text-muted cursor-not-allowed"
-                      : "bg-yellow-500 text-white hover:bg-yellow-600"
+                      ? "bg-surface text-muted"
+                      : "bg-amber-500 text-white hover:bg-amber-600"
                   }`}
                 >
                   {t.status === "full" ? "Waitlist" : "Register Now"}
                 </button>
-              </div>
+              </article>
             ))}
           </div>
         </section>
 
-        {/* Weekly Leagues */}
-        <section>
-          <h2 className="text-2xl font-bold mb-6">Weekly Leagues</h2>
+        <section aria-labelledby="leagues-heading">
+          <h2 id="leagues-heading" className="font-[var(--font-display)] text-2xl font-bold mb-6 uppercase">Weekly Leagues</h2>
           <div className="overflow-x-auto rounded-2xl border border-border">
             <table className="w-full text-sm">
               <thead>
@@ -173,15 +167,17 @@ export default function Tournaments() {
                   <th className="px-6 py-4 font-semibold">Format</th>
                   <th className="px-6 py-4 font-semibold">Level</th>
                   <th className="px-6 py-4 font-semibold">Fee</th>
-                  <th className="px-6 py-4 font-semibold"></th>
+                  <th className="px-6 py-4 font-semibold"><span className="sr-only">Actions</span></th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
                 {weeklyLeagues.map((league) => (
-                  <tr key={league.day} className="hover:bg-surface/50 transition-colors">
+                  <tr key={league.day} className="hover:bg-surface/50 transition-colors duration-200">
                     <td className="px-6 py-4 font-medium">{league.day}</td>
-                    <td className="px-6 py-4 text-muted flex items-center gap-1.5">
-                      <Clock className="h-3.5 w-3.5" /> {league.time}
+                    <td className="px-6 py-4 text-muted">
+                      <span className="flex items-center gap-1.5">
+                        <Clock className="h-3.5 w-3.5" aria-hidden="true" /> {league.time}
+                      </span>
                     </td>
                     <td className="px-6 py-4">{league.format}</td>
                     <td className="px-6 py-4">
@@ -191,7 +187,7 @@ export default function Tournaments() {
                     </td>
                     <td className="px-6 py-4 font-medium">{league.fee}</td>
                     <td className="px-6 py-4">
-                      <button className="text-yellow-600 hover:text-yellow-700 font-medium text-xs">
+                      <button className="text-primary hover:text-primary-dark font-medium text-xs transition-colors duration-200">
                         Join
                       </button>
                     </td>
@@ -202,39 +198,34 @@ export default function Tournaments() {
           </div>
         </section>
 
-        {/* Past Results */}
-        <section>
-          <h2 className="text-2xl font-bold mb-6">Recent Results</h2>
+        <section aria-labelledby="results-heading">
+          <h2 id="results-heading" className="font-[var(--font-display)] text-2xl font-bold mb-6 uppercase">Recent Results</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {pastResults.map((result) => (
-              <div
-                key={result.name}
-                className="rounded-2xl border border-border p-6 bg-background"
-              >
-                <Medal className="h-8 w-8 text-yellow-500 mb-3" />
+              <div key={result.name} className="rounded-2xl border border-border p-6 bg-card">
+                <Medal className="h-8 w-8 text-amber-500 mb-3" aria-hidden="true" />
                 <h3 className="font-semibold">{result.name}</h3>
                 <p className="text-sm text-muted mt-1">{result.date} &middot; {result.format}</p>
                 <p className="mt-3 text-sm">
                   <span className="text-muted">Winner:</span>{" "}
-                  <span className="font-semibold text-yellow-600 dark:text-yellow-400">{result.winner}</span>
+                  <span className="font-semibold text-amber-600 dark:text-amber-400">{result.winner}</span>
                 </p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="rounded-3xl bg-gradient-to-r from-yellow-500 to-orange-600 p-10 text-center text-white">
-          <h2 className="text-2xl sm:text-3xl font-bold">Want to Host a Private Tournament?</h2>
+        <section className="rounded-3xl bg-gradient-to-r from-amber-600 to-red-700 p-10 text-center text-white">
+          <h2 className="font-[var(--font-display)] text-2xl sm:text-3xl font-bold uppercase">Want to Host a Private Tournament?</h2>
           <p className="mt-3 text-white/80 max-w-lg mx-auto">
             We offer full event management — brackets, referees, prizes, and catering.
             Contact us to plan your next event.
           </p>
           <Link
             href="/community"
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-white text-orange-600 px-8 py-3 font-semibold hover:bg-yellow-100 transition-colors"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-white text-red-700 px-8 py-3 font-bold hover:bg-amber-100 transition-colors duration-200"
           >
-            Get in Touch <ArrowRight className="h-4 w-4" />
+            Get in Touch <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         </section>
       </div>

@@ -3,22 +3,22 @@ import { CircleDot, MapPin, Phone, Mail, Clock } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-foreground text-white dark:bg-surface">
+    <footer className="bg-[#1C1917] text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <Link href="/" className="flex items-center gap-2 font-bold text-xl text-primary-light">
               <CircleDot className="h-7 w-7" />
-              <span>DinkZone</span>
+              <span className="tracking-tight uppercase">DinkZone</span>
             </Link>
-            <p className="mt-4 text-sm text-white/60 dark:text-muted leading-relaxed">
+            <p className="mt-4 text-sm text-white/60 leading-relaxed">
               Your premier destination for pickleball. Play, shop, eat, compete, and
               connect &mdash; all under one roof.
             </p>
           </div>
 
           <div>
-            <h3 className="font-semibold text-sm uppercase tracking-wider text-white/40 dark:text-muted mb-4">
+            <h3 className="font-semibold text-sm uppercase tracking-wider text-white/40 mb-4">
               Quick Links
             </h3>
             <ul className="space-y-2.5 text-sm">
@@ -30,7 +30,7 @@ export default function Footer() {
                 { href: "/community", label: "Community" },
               ].map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-white/70 hover:text-primary-light transition-colors">
+                  <Link href={link.href} className="text-white/70 hover:text-primary-light transition-colors duration-200">
                     {link.label}
                   </Link>
                 </li>
@@ -39,7 +39,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-sm uppercase tracking-wider text-white/40 dark:text-muted mb-4">
+            <h3 className="font-semibold text-sm uppercase tracking-wider text-white/40 mb-4">
               Contact
             </h3>
             <ul className="space-y-3 text-sm text-white/70">
@@ -59,7 +59,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-sm uppercase tracking-wider text-white/40 dark:text-muted mb-4">
+            <h3 className="font-semibold text-sm uppercase tracking-wider text-white/40 mb-4">
               Hours
             </h3>
             <ul className="space-y-2 text-sm text-white/70">
@@ -74,7 +74,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/10 dark:border-border text-center text-sm text-white/40 dark:text-muted">
+        <div className="mt-12 pt-8 border-t border-white/10 text-center text-sm text-white/40">
           &copy; {new Date().getFullYear()} DinkZone. All rights reserved.
         </div>
       </div>

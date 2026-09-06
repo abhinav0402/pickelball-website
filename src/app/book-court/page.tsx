@@ -32,7 +32,6 @@ const pricing = [
   { label: "Weekend All Day", price: "$35/hr" },
 ];
 
-// Simulate some slots being taken
 const takenSlots = new Set(["Court 2-8:00 AM", "Court 2-9:00 AM", "Court 5-3:00 PM", "Court 1-6:00 PM", "Court 7-10:00 AM"]);
 
 export default function BookCourt() {
@@ -54,10 +53,9 @@ export default function BookCourt() {
 
   return (
     <div className="bg-background min-h-screen">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-green-600 to-emerald-700 py-16">
+      <div className="bg-gradient-to-r from-red-700 to-red-900 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-white">Book a Court</h1>
+          <h1 className="font-[var(--font-display)] text-3xl sm:text-4xl font-bold text-white uppercase">Book a Court</h1>
           <p className="mt-3 text-lg text-white/80">
             12 courts available — indoor and outdoor. Reserve your spot in seconds.
           </p>
@@ -66,60 +64,69 @@ export default function BookCourt() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          {/* Left: Booking flow */}
           <div className="lg:col-span-2 space-y-8">
             {/* Date picker */}
-            <div>
-              <h2 className="text-lg font-semibold flex items-center gap-2">
-                <CalendarCheck className="h-5 w-5 text-primary" /> Select Date
-              </h2>
+            <fieldset>
+              <legend className="text-lg font-semibold flex items-center gap-2">
+                <CalendarCheck className="h-5 w-5 text-primary" aria-hidden="true" /> Select Date
+              </legend>
               <div className="mt-4 flex items-center gap-2">
                 <button
                   onClick={() => setDateOffset(Math.max(0, dateOffset - 7))}
                   disabled={dateOffset === 0}
-                  className="p-2 rounded-lg border border-border hover:bg-surface disabled:opacity-30 transition-colors"
+                  aria-label="Previous week"
+                  className="p-2 rounded-lg border border-border hover:bg-surface disabled:opacity-30 transition-colors duration-200"
                 >
-                  <ChevronLeft className="h-4 w-4" />
+                  <ChevronLeft className="h-4 w-4" aria-hidden="true" />
                 </button>
-                <div className="flex gap-2 overflow-x-auto flex-1">
-                  {dates.map((date) => (
-                    <button
-                      key={date.toISOString()}
-                      onClick={() => setSelectedDate(date)}
-                      className={`flex-shrink-0 flex flex-col items-center px-4 py-3 rounded-xl border text-sm transition-colors ${
-                        format(selectedDate, "yyyy-MM-dd") === format(date, "yyyy-MM-dd")
-                          ? "border-primary bg-primary/10 text-primary font-semibold"
-                          : "border-border hover:border-primary/30"
-                      }`}
-                    >
-                      <span className="text-xs text-muted">{format(date, "EEE")}</span>
-                      <span className="text-lg font-semibold">{format(date, "d")}</span>
-                      <span className="text-xs text-muted">{format(date, "MMM")}</span>
-                    </button>
-                  ))}
+                <div className="flex gap-2 overflow-x-auto flex-1" role="radiogroup" aria-label="Select date">
+                  {dates.map((date) => {
+                    const isSelected = format(selectedDate, "yyyy-MM-dd") === format(date, "yyyy-MM-dd");
+                    return (
+                      <button
+                        key={date.toISOString()}
+                        onClick={() => setSelectedDate(date)}
+                        role="radio"
+                        aria-checked={isSelected}
+                        aria-label={format(date, "EEEE, MMMM d")}
+                        className={`flex-shrink-0 flex flex-col items-center px-4 py-3 rounded-xl border text-sm transition-colors duration-200 ${
+                          isSelected
+                            ? "border-primary bg-primary/10 text-primary font-semibold"
+                            : "border-border hover:border-primary/30"
+                        }`}
+                      >
+                        <span className="text-xs text-muted">{format(date, "EEE")}</span>
+                        <span className="text-lg font-semibold">{format(date, "d")}</span>
+                        <span className="text-xs text-muted">{format(date, "MMM")}</span>
+                      </button>
+                    );
+                  })}
                 </div>
                 <button
                   onClick={() => setDateOffset(dateOffset + 7)}
-                  className="p-2 rounded-lg border border-border hover:bg-surface transition-colors"
+                  aria-label="Next week"
+                  className="p-2 rounded-lg border border-border hover:bg-surface transition-colors duration-200"
                 >
-                  <ChevronRight className="h-4 w-4" />
+                  <ChevronRight className="h-4 w-4" aria-hidden="true" />
                 </button>
               </div>
-            </div>
+            </fieldset>
 
-            {/* Court filter & selection */}
-            <div>
-              <h2 className="text-lg font-semibold flex items-center gap-2">
-                <MapPin className="h-5 w-5 text-primary" /> Select Court
-              </h2>
-              <div className="mt-3 flex gap-2">
+            {/* Court selection */}
+            <fieldset>
+              <legend className="text-lg font-semibold flex items-center gap-2">
+                <MapPin className="h-5 w-5 text-primary" aria-hidden="true" /> Select Court
+              </legend>
+              <div className="mt-3 flex gap-2" role="radiogroup" aria-label="Filter court type">
                 {(["all", "indoor", "outdoor"] as const).map((f) => (
                   <button
                     key={f}
                     onClick={() => setFilter(f)}
-                    className={`px-4 py-1.5 rounded-full text-sm font-medium capitalize transition-colors ${
+                    role="radio"
+                    aria-checked={filter === f}
+                    className={`px-4 py-1.5 rounded-full text-sm font-medium capitalize transition-colors duration-200 ${
                       filter === f
-                        ? "bg-primary text-white"
+                        ? "bg-primary text-on-primary"
                         : "bg-surface text-muted hover:bg-surface-dark"
                     }`}
                   >
@@ -132,7 +139,8 @@ export default function BookCourt() {
                   <button
                     key={c.id}
                     onClick={() => setSelectedCourt(c.id)}
-                    className={`p-4 rounded-xl border text-left transition-all ${
+                    aria-pressed={selectedCourt === c.id}
+                    className={`p-4 rounded-xl border text-left transition-all duration-200 ${
                       selectedCourt === c.id
                         ? "border-primary bg-primary/10 ring-2 ring-primary/20"
                         : "border-border hover:border-primary/30"
@@ -143,15 +151,15 @@ export default function BookCourt() {
                   </button>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
             {/* Time slots */}
             {selectedCourt && (
-              <div>
-                <h2 className="text-lg font-semibold flex items-center gap-2">
-                  <Clock className="h-5 w-5 text-primary" /> Select Time
-                </h2>
-                <div className="mt-4 grid grid-cols-4 sm:grid-cols-8 gap-2">
+              <fieldset>
+                <legend className="text-lg font-semibold flex items-center gap-2">
+                  <Clock className="h-5 w-5 text-primary" aria-hidden="true" /> Select Time
+                </legend>
+                <div className="mt-4 grid grid-cols-4 sm:grid-cols-8 gap-2" role="radiogroup" aria-label="Select time">
                   {timeSlots.map((slot) => {
                     const key = `${court?.name}-${slot}`;
                     const taken = takenSlots.has(key);
@@ -160,11 +168,14 @@ export default function BookCourt() {
                         key={slot}
                         disabled={taken}
                         onClick={() => setSelectedTime(slot)}
-                        className={`py-2.5 px-2 rounded-lg text-xs font-medium transition-colors ${
+                        role="radio"
+                        aria-checked={selectedTime === slot}
+                        aria-label={`${slot}${taken ? " (unavailable)" : ""}`}
+                        className={`py-2.5 px-2 rounded-lg text-xs font-medium transition-colors duration-200 ${
                           taken
-                            ? "bg-red-100 text-red-400 dark:bg-red-900/20 cursor-not-allowed line-through"
+                            ? "bg-red-100 text-red-400 dark:bg-red-900/20 line-through"
                             : selectedTime === slot
-                            ? "bg-primary text-white"
+                            ? "bg-primary text-on-primary"
                             : "bg-surface hover:bg-primary/10 text-foreground"
                         }`}
                       >
@@ -173,23 +184,25 @@ export default function BookCourt() {
                     );
                   })}
                 </div>
-              </div>
+              </fieldset>
             )}
 
             {/* Duration */}
             {selectedTime && (
-              <div>
-                <h2 className="text-lg font-semibold flex items-center gap-2">
-                  <Users className="h-5 w-5 text-primary" /> Duration
-                </h2>
-                <div className="mt-3 flex gap-3">
+              <fieldset>
+                <legend className="text-lg font-semibold flex items-center gap-2">
+                  <Users className="h-5 w-5 text-primary" aria-hidden="true" /> Duration
+                </legend>
+                <div className="mt-3 flex gap-3" role="radiogroup" aria-label="Select duration">
                   {[1, 1.5, 2].map((d) => (
                     <button
                       key={d}
                       onClick={() => setDuration(d)}
-                      className={`px-6 py-2.5 rounded-full text-sm font-medium transition-colors ${
+                      role="radio"
+                      aria-checked={duration === d}
+                      className={`px-6 py-2.5 rounded-full text-sm font-medium transition-colors duration-200 ${
                         duration === d
-                          ? "bg-primary text-white"
+                          ? "bg-primary text-on-primary"
                           : "bg-surface text-foreground hover:bg-surface-dark"
                       }`}
                     >
@@ -197,30 +210,30 @@ export default function BookCourt() {
                     </button>
                   ))}
                 </div>
-              </div>
+              </fieldset>
             )}
 
             {/* Confirm */}
             {selectedCourt && selectedTime && (
-              <div className="rounded-2xl bg-gradient-to-r from-green-600 to-emerald-700 p-6 text-white">
-                <h3 className="font-semibold text-lg">Booking Summary</h3>
+              <div className="rounded-2xl bg-gradient-to-r from-red-700 to-red-900 p-6 text-white">
+                <h3 className="font-[var(--font-display)] font-bold text-lg uppercase">Booking Summary</h3>
                 <div className="mt-3 grid grid-cols-2 gap-3 text-sm text-white/80">
                   <div>Date: <span className="text-white font-medium">{format(selectedDate, "EEEE, MMM d")}</span></div>
                   <div>Court: <span className="text-white font-medium">{court?.name}</span></div>
                   <div>Time: <span className="text-white font-medium">{selectedTime}</span></div>
                   <div>Duration: <span className="text-white font-medium">{duration} hr{duration > 1 ? "s" : ""}</span></div>
                 </div>
-                <button className="mt-5 w-full sm:w-auto rounded-full bg-white text-green-700 px-8 py-3 font-semibold hover:bg-yellow-300 hover:text-green-800 transition-colors">
+                <button className="mt-5 w-full sm:w-auto rounded-full bg-amber-400 text-red-900 px-8 py-3 font-bold hover:bg-amber-300 transition-colors duration-200">
                   Confirm Reservation
                 </button>
               </div>
             )}
           </div>
 
-          {/* Right: Pricing sidebar */}
+          {/* Pricing sidebar */}
           <div className="space-y-6">
-            <div className="rounded-2xl border border-border p-6">
-              <h3 className="font-semibold text-lg">Court Rates</h3>
+            <div className="rounded-2xl border border-border p-6 bg-card">
+              <h3 className="font-[var(--font-display)] font-bold text-lg uppercase">Court Rates</h3>
               <ul className="mt-4 space-y-3">
                 {pricing.map((p) => (
                   <li key={p.label} className="flex justify-between text-sm">
@@ -234,8 +247,8 @@ export default function BookCourt() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-border p-6">
-              <h3 className="font-semibold text-lg">Membership Plans</h3>
+            <div className="rounded-2xl border border-border p-6 bg-card">
+              <h3 className="font-[var(--font-display)] font-bold text-lg uppercase">Membership Plans</h3>
               <div className="mt-4 space-y-4">
                 <div className="p-4 rounded-xl bg-surface">
                   <div className="font-semibold">Basic</div>

@@ -16,12 +16,12 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-border dark:bg-[#0a0a0a]/80">
+    <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-border dark:bg-[#1C1917]/90">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 font-bold text-xl text-primary">
+          <Link href="/" className="flex items-center gap-2 font-[var(--font-display)] font-bold text-xl text-primary">
             <CircleDot className="h-7 w-7" />
-            <span>DinkZone</span>
+            <span className="tracking-tight uppercase">DinkZone</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-1">
@@ -29,23 +29,23 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-3 py-2 rounded-lg text-sm font-medium text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors"
+                className="px-3 py-2 rounded-lg text-sm font-medium text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors duration-200"
               >
                 {link.label}
               </Link>
             ))}
             <Link
               href="/book-court"
-              className="ml-3 px-5 py-2 rounded-full bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition-colors"
+              className="ml-3 px-5 py-2 rounded-full bg-primary text-on-primary text-sm font-semibold hover:bg-primary-dark transition-colors duration-200"
             >
               Reserve Now
             </Link>
           </div>
 
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-surface"
+            className="md:hidden p-2 rounded-lg hover:bg-surface transition-colors duration-200"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
             {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -53,13 +53,13 @@ export default function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden border-t border-border bg-white dark:bg-[#0a0a0a]">
+        <div className="md:hidden border-t border-border bg-white dark:bg-[#1C1917]">
           <div className="px-4 py-3 space-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="block px-3 py-2.5 rounded-lg text-base font-medium text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors"
+                className="block px-3 py-2.5 rounded-lg text-base font-medium text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors duration-200"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
@@ -67,7 +67,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/book-court"
-              className="block mt-2 px-5 py-2.5 rounded-full bg-primary text-white text-center text-base font-semibold hover:bg-primary-dark transition-colors"
+              className="block mt-2 px-5 py-2.5 rounded-full bg-primary text-on-primary text-center text-base font-semibold hover:bg-primary-dark transition-colors duration-200"
               onClick={() => setMobileOpen(false)}
             >
               Reserve Now
