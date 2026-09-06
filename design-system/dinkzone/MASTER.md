@@ -37,16 +37,31 @@
 
 **Color Notes:** Team red + championship gold [Accent adjusted from #FBBF24]
 
+### Dark-Section Tokens
+
+These tokens are used for the Chicken N Pickle-inspired dark sections (explicit styling, NOT dark mode). Sections alternate dark/light throughout the site.
+
+| Role | Hex | CSS Variable | Tailwind Utility |
+|------|-----|--------------|------------------|
+| Dark Background | `#111111` | `--dark-bg` | `bg-dark-bg` |
+| Dark Background Alt | `#1A1A1A` | `--dark-bg-alt` | `bg-dark-bg-alt` |
+| Dark Surface | `#222222` | `--dark-surface` | `bg-dark-surface` |
+| Dark Text | `#FFFFFF` | `--dark-text` | `text-dark-text` |
+| Dark Muted | `#A3A3A3` | `--dark-muted` | `text-dark-muted` |
+| CTA Green (Lime) | `#A3E635` | `--cta-green` | `bg-cta-green` / `text-cta-green` |
+
 ### Typography
 
-- **Heading Font:** Barlow Condensed
+- **Display Font:** Bebas Neue (weight 400, uppercase headings)
 - **Body Font:** Barlow
-- **Mood:** sports, fitness, athletic, energetic, condensed, action
-- **Google Fonts:** [Barlow Condensed + Barlow](https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700&display=swap)
+- **Monospace:** Geist Mono
+- **Mood:** bold, venue, immersive, playful, uppercase, high-impact
+- **Google Fonts:** [Bebas Neue + Barlow](https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&display=swap)
+- **CSS Variable:** `--font-display: var(--font-bebas-neue)` (set via `next/font/google` in `layout.tsx`)
 
 **CSS Import:**
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&display=swap');
 ```
 
 ### Spacing Variables
@@ -77,30 +92,44 @@
 ### Buttons
 
 ```css
-/* Primary Button */
+/* Primary CTA Button (lime green, used on dark sections) */
 .btn-primary {
-  background: #DC2626;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
+  background: var(--cta-green);
+  color: var(--dark-bg);
+  padding: 14px 32px;
+  border-radius: 9999px;
+  font-weight: 700;
   transition: all 200ms ease;
   cursor: pointer;
 }
 
 .btn-primary:hover {
   opacity: 0.9;
-  transform: translateY(-1px);
 }
 
-/* Secondary Button */
+/* Secondary Button (outline, used on dark sections) */
 .btn-secondary {
   background: transparent;
-  color: #DC2626;
-  border: 2px solid #DC2626;
-  padding: 12px 24px;
-  border-radius: 8px;
+  color: white;
+  border: 2px solid rgba(255,255,255,0.3);
+  padding: 14px 32px;
+  border-radius: 9999px;
   font-weight: 600;
+  transition: all 200ms ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* Light-section primary button */
+.btn-primary-light {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  padding: 14px 32px;
+  border-radius: 9999px;
+  font-weight: 700;
   transition: all 200ms ease;
   cursor: pointer;
 }
@@ -170,7 +199,7 @@
 
 **Best For:** Startups, creative agencies, gaming, social media, youth-focused, entertainment, consumer
 
-**Key Effects:** Large sections (48px+ gaps), animated patterns, bold hover (color shift), scroll-snap, large type (32px+), 200-300ms
+**Key Effects:** Large sections (48px+ gaps), animated patterns, bold hover (color shift), scroll-snap, large type (32px+), 200-300ms, CSS marquee animation, hero carousel with auto-advance, alternating dark/light sections
 
 ### Page Pattern
 

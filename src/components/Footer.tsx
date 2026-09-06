@@ -3,17 +3,17 @@ import { CircleDot, MapPin, Phone, Mail, Clock } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1C1917] text-white">
+    <footer className="bg-[#0A0A0A] text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
-            <Link href="/" className="flex items-center gap-2 font-bold text-xl text-primary-light">
-              <CircleDot className="h-7 w-7" />
+            <Link href="/" className="flex items-center gap-2 font-[var(--font-display)] text-2xl text-white">
+              <CircleDot className="h-7 w-7 text-cta-green" aria-hidden="true" />
               <span className="tracking-tight uppercase">DinkZone</span>
             </Link>
             <p className="mt-4 text-sm text-white/60 leading-relaxed">
-              Your premier destination for pickleball. Play, shop, eat, compete, and
-              connect &mdash; all under one roof.
+              Austin&apos;s premier pickleball destination. Play, eat, shop, and
+              celebrate &mdash; all under one roof.
             </p>
           </div>
 
@@ -24,13 +24,14 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm">
               {[
                 { href: "/book-court", label: "Book a Court" },
-                { href: "/shop", label: "Pro Shop" },
+                { href: "/events", label: "Plan an Event" },
                 { href: "/food-drinks", label: "Food & Drinks" },
-                { href: "/tournaments", label: "Tournaments" },
-                { href: "/community", label: "Community" },
+                { href: "/shop", label: "Merchandise" },
+                { href: "/programs", label: "Programs" },
+                { href: "/about", label: "About Us" },
               ].map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-white/70 hover:text-primary-light transition-colors duration-200">
+                  <Link href={link.href} className="text-white/70 hover:text-cta-green transition-colors duration-200">
                     {link.label}
                   </Link>
                 </li>
@@ -44,15 +45,15 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3 text-sm text-white/70">
               <li className="flex items-start gap-2">
-                <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-primary-light" />
+                <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-cta-green" aria-hidden="true" />
                 123 Pickle Lane, Austin, TX 78701
               </li>
               <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 shrink-0 text-primary-light" />
+                <Phone className="h-4 w-4 shrink-0 text-cta-green" aria-hidden="true" />
                 (512) 555-DINK
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 shrink-0 text-primary-light" />
+                <Mail className="h-4 w-4 shrink-0 text-cta-green" aria-hidden="true" />
                 hello@dinkzone.com
               </li>
             </ul>
@@ -64,7 +65,7 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2 text-sm text-white/70">
               <li className="flex items-center gap-2">
-                <Clock className="h-4 w-4 shrink-0 text-primary-light" />
+                <Clock className="h-4 w-4 shrink-0 text-cta-green" aria-hidden="true" />
                 <div>
                   <p>Mon - Fri: 6am - 10pm</p>
                   <p>Sat - Sun: 7am - 11pm</p>

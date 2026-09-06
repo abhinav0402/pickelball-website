@@ -1,53 +1,65 @@
 import Link from "next/link";
 import {
-  CalendarCheck,
-  ShoppingBag,
-  UtensilsCrossed,
-  Trophy,
-  Users,
   Star,
   ArrowRight,
-  MapPin,
-  Clock,
-  Zap,
+  Volleyball,
+  Target,
+  Gamepad2,
+  Disc3,
+  UtensilsCrossed,
+  PartyPopper,
+  Briefcase,
+  Heart,
 } from "lucide-react";
-import Image from "next/image";
+import HeroCarousel from "@/components/HeroCarousel";
+import Marquee from "@/components/Marquee";
+import ActivityCard from "@/components/ActivityCard";
 
-const features = [
+const activities = [
   {
-    icon: CalendarCheck,
-    title: "Book a Court",
-    description: "Reserve indoor and outdoor courts in seconds. Walk-ins welcome too!",
-    href: "/book-court",
-    color: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
+    icon: <Volleyball className="h-6 w-6" aria-hidden="true" />,
+    title: "Pickleball",
+    description:
+      "12 indoor and outdoor courts for every skill level. Walk-ins welcome, or reserve your spot ahead.",
   },
   {
-    icon: ShoppingBag,
-    title: "Pro Shop",
-    description: "Top-rated paddles, balls, shoes, and gear from brands you love.",
-    href: "/shop",
-    color: "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
+    icon: <Target className="h-6 w-6" aria-hidden="true" />,
+    title: "Cornhole",
+    description:
+      "Grab a set of bags and challenge your crew. Perfect for winding down between matches.",
   },
   {
-    icon: UtensilsCrossed,
-    title: "Food & Drinks",
-    description: "Smoothies, bites, and craft drinks — fuel up before or after your game.",
-    href: "/food-drinks",
-    color: "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
+    icon: <Gamepad2 className="h-6 w-6" aria-hidden="true" />,
+    title: "Ping Pong",
+    description:
+      "Tables ready to go — no reservation needed. Quick rallies or full tournaments, your call.",
   },
   {
-    icon: Trophy,
-    title: "Tournaments",
-    description: "Compete in weekly leagues and monthly tournaments for all skill levels.",
-    href: "/tournaments",
-    color: "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400",
+    icon: <Disc3 className="h-6 w-6" aria-hidden="true" />,
+    title: "Shuffleboard",
+    description:
+      "Slide into a classic. Our full-size shuffleboard tables are great for groups of all ages.",
+  },
+];
+
+const eventTypes = [
+  {
+    icon: <PartyPopper className="h-7 w-7" aria-hidden="true" />,
+    title: "Birthdays",
+    description:
+      "Food, fun, and courts — celebrate with a party nobody will forget.",
   },
   {
-    icon: Users,
-    title: "Community",
-    description: "Connect with players, find partners, and share tips with fellow enthusiasts.",
-    href: "/community",
-    color: "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400",
+    icon: <Briefcase className="h-7 w-7" aria-hidden="true" />,
+    title: "Corporate Events",
+    description:
+      "Team building with purpose. Pickleball + catering + good vibes = the best offsite ever.",
+  },
+  {
+    icon: <Heart className="h-7 w-7" aria-hidden="true" />,
+    title: "Fundraisers",
+    description:
+      "Host a charity tournament or community event. We handle the logistics, you make the impact.",
   },
 ];
 
@@ -72,114 +84,136 @@ const testimonials = [
 export default function Home() {
   return (
     <div>
-      {/* Hero */}
-      <section className="relative overflow-hidden min-h-[600px] lg:min-h-[700px]">
-        <Image
-          src="/hero.jpg"
-          alt="People laughing and playing pickleball on vibrant courts"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/65 to-black/40" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 sm:py-32 lg:py-40 flex items-center min-h-[600px] lg:min-h-[700px]">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-white/90 mb-6">
-              <Zap className="h-4 w-4" aria-hidden="true" />
-              Now open — Austin&apos;s newest pickleball destination
-            </div>
-            <h1 className="font-[var(--font-display)] text-5xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-tight uppercase drop-shadow-lg">
-              Play. Shop. Eat.
-              <br />
-              <span className="text-amber-400">All Things Pickleball.</span>
-            </h1>
-            <p className="mt-6 text-lg sm:text-xl text-white/85 leading-relaxed max-w-xl drop-shadow">
-              Premium courts, top gear, great food, and an incredible community.
-              Your one-stop pickleball venue — welcome to DinkZone.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/book-court"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-400 text-red-900 px-8 py-3.5 text-base font-bold hover:bg-amber-300 transition-colors duration-200 shadow-lg"
-              >
-                Book a Court
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <Link
-                href="/shop"
-                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/40 text-white px-8 py-3.5 text-base font-semibold hover:bg-white/15 backdrop-blur-sm transition-colors duration-200"
-              >
-                Browse Pro Shop
-              </Link>
-            </div>
-            <div className="mt-10 flex items-center gap-6 text-sm text-white/70">
-              <span className="flex items-center gap-1.5">
-                <MapPin className="h-4 w-4" aria-hidden="true" /> Austin, TX
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Clock className="h-4 w-4" aria-hidden="true" /> Open Daily
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Star className="h-4 w-4 text-amber-400" aria-hidden="true" /> 4.9 Rating
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroCarousel />
 
-      {/* Features */}
+      <Marquee text="WE'RE KIND OF A BIG DILL • EAT. DRINK. PLAY. • WELCOME TO THE ZONE" />
+
+      {/* Welcome / Activities */}
       <section className="py-20 sm:py-28 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="font-[var(--font-display)] text-3xl sm:text-4xl font-bold tracking-tight uppercase">
-              Everything Under One Roof
+            <h2 className="font-[var(--font-display)] text-4xl sm:text-5xl lg:text-6xl tracking-tight uppercase">
+              Welcome to the Zone
             </h2>
-            <p className="mt-4 text-lg text-muted">
-              From court reservations to post-game meals, we&apos;ve got you covered.
+            <p className="mt-4 text-lg text-muted leading-relaxed">
+              From pickleball die-hards to first-time players, we&apos;ve got the
+              game for you. Everyone is welcome at DinkZone!
             </p>
           </div>
 
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature) => (
-              <Link
-                key={feature.href}
-                href={feature.href}
-                className="group relative rounded-2xl border border-border bg-card p-8 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-200"
-              >
-                <div className={`inline-flex rounded-xl p-3 ${feature.color}`}>
-                  <feature.icon className="h-6 w-6" aria-hidden="true" />
-                </div>
-                <h3 className="mt-5 text-lg font-semibold group-hover:text-primary transition-colors duration-200">
-                  {feature.title}
-                </h3>
-                <p className="mt-2 text-sm text-muted leading-relaxed">
-                  {feature.description}
-                </p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  Learn more <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                </span>
-              </Link>
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {activities.map((activity) => (
+              <ActivityCard key={activity.title} {...activity} />
             ))}
           </div>
         </div>
       </section>
 
+      {/* Food Teaser */}
+      <section className="py-20 sm:py-28 bg-dark-bg">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <p className="text-cta-green font-semibold text-sm uppercase tracking-widest">
+                Chef-Driven Eats
+              </p>
+              <h2 className="mt-3 font-[var(--font-display)] text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight uppercase leading-[0.95]">
+                Great Food.
+                <br />
+                Bold Flavor.
+              </h2>
+              <p className="mt-6 text-lg text-dark-muted leading-relaxed max-w-lg">
+                Handcrafted meals, fresh smoothies, craft cocktails, and our legendary
+                Pickle Margarita. Everything is made to fuel your game and feed your crew.
+              </p>
+              <Link
+                href="/food-drinks"
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-cta-green text-dark-bg px-8 py-3.5 text-base font-bold hover:bg-cta-green/90 transition-colors duration-200"
+              >
+                See the Menu
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
+            <div className="rounded-2xl bg-dark-surface p-10 border border-white/10">
+              <UtensilsCrossed className="h-16 w-16 text-cta-green/30 mb-6" aria-hidden="true" />
+              <div className="space-y-4">
+                {["The Dink Bowl", "Smash Burger", "Pickle Margarita", "Loaded Nachos"].map((item) => (
+                  <div key={item} className="flex items-center gap-3 text-white/80">
+                    <span className="h-1.5 w-1.5 rounded-full bg-cta-green shrink-0" />
+                    <span className="font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-6 text-sm text-dark-muted">
+                &hellip;and 15+ more items on the menu.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Events Teaser */}
+      <section className="py-20 sm:py-28 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto">
+            <p className="text-primary font-semibold text-sm uppercase tracking-widest">
+              Let&apos;s Celebrate
+            </p>
+            <h2 className="mt-3 font-[var(--font-display)] text-4xl sm:text-5xl lg:text-6xl tracking-tight uppercase">
+              Plan Your Event
+            </h2>
+            <p className="mt-4 text-lg text-muted leading-relaxed">
+              From birthday bashes to company outings, we&apos;ve got flexible spaces
+              and full event support.
+            </p>
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+            {eventTypes.map((event) => (
+              <div
+                key={event.title}
+                className="rounded-2xl border border-border bg-card p-8 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-200 text-center"
+              >
+                <div className="inline-flex rounded-xl p-4 bg-primary/10 text-primary">
+                  {event.icon}
+                </div>
+                <h3 className="mt-5 text-lg font-semibold">{event.title}</h3>
+                <p className="mt-2 text-sm text-muted leading-relaxed">
+                  {event.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href="/events"
+              className="inline-flex items-center gap-2 rounded-full bg-primary text-on-primary px-8 py-3.5 text-base font-bold hover:bg-primary-dark transition-colors duration-200"
+            >
+              Plan Your Event
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Stats */}
-      <section className="py-16 bg-surface">
+      <section className="py-16 sm:py-20 bg-dark-bg">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {[
               { value: "12", label: "Indoor & Outdoor Courts" },
               { value: "500+", label: "Active Members" },
-              { value: "50+", label: "Tournaments / Year" },
+              { value: "50+", label: "Events / Year" },
               { value: "4.9", label: "Average Rating" },
             ].map((stat) => (
               <div key={stat.label}>
-                <div className="font-[var(--font-display)] text-4xl sm:text-5xl font-bold text-primary">
+                <div className="font-[var(--font-display)] text-5xl sm:text-6xl text-cta-green">
                   {stat.value}
                 </div>
-                <div className="mt-2 text-sm text-muted font-medium">{stat.label}</div>
+                <div className="mt-2 text-sm text-dark-muted font-medium">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
@@ -190,7 +224,7 @@ export default function Home() {
       <section className="py-20 sm:py-28 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="font-[var(--font-display)] text-3xl sm:text-4xl font-bold tracking-tight uppercase">
+            <h2 className="font-[var(--font-display)] text-4xl sm:text-5xl tracking-tight uppercase">
               What Our Players Say
             </h2>
             <p className="mt-4 text-lg text-muted">
@@ -224,28 +258,33 @@ export default function Home() {
         </div>
       </section>
 
+      <Marquee
+        text="PICKLEBALL IS CLUCKIN' AWESOME • DINK RESPONSIBLY • SEE YOU ON THE COURT"
+        variant="accent"
+      />
+
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-red-700 to-red-900">
+      <section className="py-20 sm:py-24 bg-dark-bg">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-[var(--font-display)] text-3xl sm:text-4xl font-bold text-white uppercase">
+          <h2 className="font-[var(--font-display)] text-4xl sm:text-5xl lg:text-6xl text-white uppercase">
             Ready to Play?
           </h2>
-          <p className="mt-4 text-lg text-white/80 max-w-xl mx-auto">
-            Book your court today and experience the best pickleball venue in Austin.
+          <p className="mt-4 text-lg text-dark-muted max-w-xl mx-auto">
+            Book your court today and experience Austin&apos;s best pickleball venue.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/book-court"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-400 text-red-900 px-8 py-3.5 text-base font-bold hover:bg-amber-300 transition-colors duration-200"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-cta-green text-dark-bg px-8 py-4 text-base font-bold hover:bg-cta-green/90 transition-colors duration-200"
             >
               Book a Court
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
             <Link
-              href="/community"
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white px-8 py-3.5 text-base font-semibold hover:bg-white/10 transition-colors duration-200"
+              href="/programs"
+              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white px-8 py-4 text-base font-semibold hover:bg-white/10 transition-colors duration-200"
             >
-              Join the Community
+              Browse Programs
             </Link>
           </div>
         </div>

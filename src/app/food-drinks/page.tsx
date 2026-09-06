@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { UtensilsCrossed, Coffee, Salad, IceCreamCone, Beer, Plus, Minus, ShoppingCart, Utensils, Wine, CakeSlice } from "lucide-react";
+import PageHero from "@/components/PageHero";
 
 type MenuItem = {
   id: number;
@@ -68,23 +69,18 @@ export default function FoodDrinks() {
   const orderCount = Object.values(order).reduce((a, b) => a + b, 0);
 
   return (
-    <div className="bg-background min-h-screen">
-      <div className="bg-gradient-to-r from-amber-600 to-orange-700 py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="font-[var(--font-display)] text-3xl sm:text-4xl font-bold text-white flex items-center gap-3 uppercase">
-            <UtensilsCrossed className="h-8 w-8" aria-hidden="true" /> Food & Drinks
-          </h1>
-          <p className="mt-3 text-lg text-white/80">
-            Fuel up before your match or celebrate after. Order ahead for courtside pickup!
-          </p>
-        </div>
-      </div>
+    <div className="bg-dark-bg min-h-screen">
+      <PageHero
+        title="Food & Drinks"
+        subtitle="Fuel up before your match or celebrate after. Order ahead for courtside pickup!"
+        icon={<UtensilsCrossed className="h-10 w-10 text-cta-green" aria-hidden="true" />}
+      />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
           <nav className="lg:col-span-1" aria-label="Menu categories">
             <div className="sticky top-24 space-y-2">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-muted mb-3">Menu</h3>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-dark-muted mb-3">Menu</h3>
               {categories.map((cat) => {
                 const Icon = categoryIcons[cat] || UtensilsCrossed;
                 return (
@@ -94,8 +90,8 @@ export default function FoodDrinks() {
                     aria-current={activeCategory === cat ? "true" : undefined}
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-left transition-colors duration-200 ${
                       activeCategory === cat
-                        ? "bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400"
-                        : "hover:bg-surface text-muted"
+                        ? "bg-cta-green/10 text-cta-green"
+                        : "hover:bg-white/5 text-dark-muted"
                     }`}
                   >
                     <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
@@ -105,12 +101,12 @@ export default function FoodDrinks() {
               })}
 
               {orderCount > 0 && (
-                <div className="mt-6 rounded-2xl bg-gradient-to-r from-amber-600 to-orange-700 p-5 text-white">
-                  <div className="flex items-center gap-2 font-semibold">
-                    <ShoppingCart className="h-4 w-4" aria-hidden="true" />
+                <div className="mt-6 rounded-2xl bg-dark-surface border border-cta-green/20 p-5">
+                  <div className="flex items-center gap-2 font-semibold text-white">
+                    <ShoppingCart className="h-4 w-4 text-cta-green" aria-hidden="true" />
                     Your Order ({orderCount})
                   </div>
-                  <div className="mt-3 space-y-1.5 text-sm text-white/80">
+                  <div className="mt-3 space-y-1.5 text-sm text-dark-muted">
                     {Object.entries(order).map(([id, qty]) => {
                       const item = menu.find((m) => m.id === Number(id));
                       if (!item) return null;
@@ -122,11 +118,11 @@ export default function FoodDrinks() {
                       );
                     })}
                   </div>
-                  <div className="mt-3 pt-3 border-t border-white/20 flex justify-between font-semibold">
+                  <div className="mt-3 pt-3 border-t border-white/10 flex justify-between font-semibold text-white">
                     <span>Total</span>
                     <span>${orderTotal.toFixed(2)}</span>
                   </div>
-                  <button className="mt-4 w-full rounded-full bg-white text-amber-700 py-2.5 font-bold hover:bg-amber-100 transition-colors duration-200">
+                  <button className="mt-4 w-full rounded-full bg-cta-green text-dark-bg py-2.5 font-bold hover:bg-cta-green/90 transition-colors duration-200">
                     Place Order
                   </button>
                 </div>
@@ -135,7 +131,7 @@ export default function FoodDrinks() {
           </nav>
 
           <div className="lg:col-span-3">
-            <h2 className="font-[var(--font-display)] text-2xl font-bold mb-6 uppercase">{activeCategory}</h2>
+            <h2 className="font-[var(--font-display)] text-3xl text-white mb-6 uppercase">{activeCategory}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {menu
                 .filter((m) => m.category === activeCategory)
@@ -144,44 +140,44 @@ export default function FoodDrinks() {
                   return (
                     <div
                       key={item.id}
-                      className="flex gap-4 p-5 rounded-2xl border border-border bg-card hover:border-amber-300 hover:shadow-md transition-all duration-200"
+                      className="flex gap-4 p-5 rounded-2xl border border-white/10 bg-dark-surface hover:border-cta-green/30 hover:shadow-md transition-all duration-200"
                     >
-                      <div className="shrink-0 mt-1 p-2 rounded-xl bg-amber-100 dark:bg-amber-900/20">
-                        <ItemIcon className="h-6 w-6 text-amber-600" aria-hidden="true" />
+                      <div className="shrink-0 mt-1 p-2 rounded-xl bg-cta-green/10">
+                        <ItemIcon className="h-6 w-6 text-cta-green" aria-hidden="true" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-2">
                           <div>
-                            <h3 className="font-semibold text-sm">
+                            <h3 className="font-semibold text-sm text-white">
                               {item.name}
                               {item.popular && (
-                                <span className="ml-2 inline-block text-xs bg-amber-100 text-amber-600 dark:bg-amber-900/20 dark:text-amber-400 px-2 py-0.5 rounded-full font-medium">
+                                <span className="ml-2 inline-block text-xs bg-cta-green/10 text-cta-green px-2 py-0.5 rounded-full font-medium">
                                   Popular
                                 </span>
                               )}
                             </h3>
-                            <p className="text-xs text-muted mt-1 leading-relaxed">{item.description}</p>
+                            <p className="text-xs text-dark-muted mt-1 leading-relaxed">{item.description}</p>
                           </div>
                         </div>
                         <div className="mt-3 flex items-center justify-between">
-                          <span className="font-bold">${item.price.toFixed(2)}</span>
+                          <span className="font-bold text-white">${item.price.toFixed(2)}</span>
                           <div className="flex items-center gap-2">
                             {order[item.id] ? (
                               <>
                                 <button
                                   onClick={() => updateOrder(item.id, -1)}
                                   aria-label={`Remove one ${item.name}`}
-                                  className="p-1.5 rounded-full bg-surface hover:bg-surface-dark transition-colors duration-200"
+                                  className="p-1.5 rounded-full bg-dark-bg hover:bg-white/10 text-white transition-colors duration-200"
                                 >
                                   <Minus className="h-3.5 w-3.5" aria-hidden="true" />
                                 </button>
-                                <span className="text-sm font-semibold w-6 text-center" aria-label={`${order[item.id]} in order`}>
+                                <span className="text-sm font-semibold w-6 text-center text-white" aria-label={`${order[item.id]} in order`}>
                                   {order[item.id]}
                                 </span>
                                 <button
                                   onClick={() => updateOrder(item.id, 1)}
                                   aria-label={`Add another ${item.name}`}
-                                  className="p-1.5 rounded-full bg-amber-500 text-white hover:bg-amber-600 transition-colors duration-200"
+                                  className="p-1.5 rounded-full bg-cta-green text-dark-bg hover:bg-cta-green/90 transition-colors duration-200"
                                 >
                                   <Plus className="h-3.5 w-3.5" aria-hidden="true" />
                                 </button>
@@ -190,7 +186,7 @@ export default function FoodDrinks() {
                               <button
                                 onClick={() => updateOrder(item.id, 1)}
                                 aria-label={`Add ${item.name} to order`}
-                                className="px-4 py-1.5 rounded-full bg-amber-500 text-white text-xs font-semibold hover:bg-amber-600 transition-colors duration-200"
+                                className="px-4 py-1.5 rounded-full bg-cta-green text-dark-bg text-xs font-bold hover:bg-cta-green/90 transition-colors duration-200"
                               >
                                 Add
                               </button>

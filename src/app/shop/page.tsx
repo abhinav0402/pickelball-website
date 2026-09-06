@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ShoppingBag, Star, Filter, Search, ShoppingCart, Disc, CircleDot, Footprints, Backpack } from "lucide-react";
+import PageHero from "@/components/PageHero";
 
 type Product = {
   id: number;
@@ -50,22 +51,17 @@ export default function Shop() {
   };
 
   return (
-    <div className="bg-background min-h-screen">
-      <div className="bg-gradient-to-r from-red-700 to-red-900 py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="font-[var(--font-display)] text-3xl sm:text-4xl font-bold text-white flex items-center gap-3 uppercase">
-            <ShoppingBag className="h-8 w-8" aria-hidden="true" /> Pro Shop
-          </h1>
-          <p className="mt-3 text-lg text-white/80">
-            Top paddles, balls, shoes, and gear — shipped or pick up in store.
-          </p>
-        </div>
-      </div>
+    <div className="bg-dark-bg min-h-screen">
+      <PageHero
+        title="Merchandise"
+        subtitle="Top paddles, balls, shoes, and gear — shipped to your door or pick up in store."
+        icon={<ShoppingBag className="h-10 w-10 text-cta-green" aria-hidden="true" />}
+      />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
           <div className="flex items-center gap-2 overflow-x-auto" role="radiogroup" aria-label="Filter by category">
-            <Filter className="h-4 w-4 text-muted shrink-0" aria-hidden="true" />
+            <Filter className="h-4 w-4 text-dark-muted shrink-0" aria-hidden="true" />
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -74,8 +70,8 @@ export default function Shop() {
                 aria-checked={category === cat}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors duration-200 ${
                   category === cat
-                    ? "bg-primary text-on-primary"
-                    : "bg-surface text-muted hover:bg-surface-dark"
+                    ? "bg-cta-green text-dark-bg"
+                    : "bg-dark-surface text-dark-muted hover:bg-white/10"
                 }`}
               >
                 {cat}
@@ -85,20 +81,20 @@ export default function Shop() {
           <div className="flex items-center gap-4">
             <div className="relative">
               <label htmlFor="shop-search" className="sr-only">Search products</label>
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted" aria-hidden="true" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-dark-muted" aria-hidden="true" />
               <input
                 id="shop-search"
                 type="text"
                 placeholder="Search products..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="pl-9 pr-4 py-2 rounded-full border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary w-56"
+                className="pl-9 pr-4 py-2 rounded-full border border-white/10 bg-dark-surface text-white text-sm focus:outline-none focus:ring-2 focus:ring-cta-green/30 focus:border-cta-green w-56"
               />
             </div>
-            <button className="relative p-2.5 rounded-full bg-surface hover:bg-surface-dark transition-colors duration-200" aria-label={`Shopping cart with ${cartCount} items`}>
+            <button className="relative p-2.5 rounded-full bg-dark-surface hover:bg-white/10 text-white transition-colors duration-200" aria-label={`Shopping cart with ${cartCount} items`}>
               <ShoppingCart className="h-5 w-5" aria-hidden="true" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-primary text-on-primary text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium" aria-hidden="true">
+                <span className="absolute -top-1 -right-1 bg-cta-green text-dark-bg text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium" aria-hidden="true">
                   {cartCount}
                 </span>
               )}
@@ -112,41 +108,41 @@ export default function Shop() {
             return (
               <div
                 key={product.id}
-                className="group rounded-2xl border border-border bg-card overflow-hidden hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-200"
+                className="group rounded-2xl border border-white/10 bg-dark-surface overflow-hidden hover:border-cta-green/30 hover:shadow-lg hover:shadow-cta-green/5 transition-all duration-200"
               >
-                <div className="relative bg-surface p-8 flex items-center justify-center">
-                  <ProductIcon className="h-16 w-16 text-primary/40" aria-hidden="true" />
+                <div className="relative bg-dark-bg p-8 flex items-center justify-center">
+                  <ProductIcon className="h-16 w-16 text-cta-green/30" aria-hidden="true" />
                   {product.badge && (
                     <span className={`absolute top-3 right-3 text-xs font-semibold px-2.5 py-1 rounded-full ${
                       product.badge === "Best Seller"
-                        ? "bg-amber-100 text-amber-700 dark:bg-amber-900/30"
+                        ? "bg-amber-900/30 text-amber-400"
                         : product.badge === "New"
-                        ? "bg-red-100 text-red-700 dark:bg-red-900/30"
+                        ? "bg-red-900/30 text-red-400"
                         : product.badge === "Popular"
-                        ? "bg-orange-100 text-orange-700 dark:bg-orange-900/30"
-                        : "bg-rose-100 text-rose-700 dark:bg-rose-900/30"
+                        ? "bg-orange-900/30 text-orange-400"
+                        : "bg-cta-green/10 text-cta-green"
                     }`}>
                       {product.badge}
                     </span>
                   )}
                 </div>
                 <div className="p-5">
-                  <div className="text-xs text-muted font-medium uppercase tracking-wide">
+                  <div className="text-xs text-dark-muted font-medium uppercase tracking-wide">
                     {product.brand}
                   </div>
-                  <h3 className="mt-1 font-semibold text-sm leading-snug line-clamp-2">
+                  <h3 className="mt-1 font-semibold text-sm text-white leading-snug line-clamp-2">
                     {product.name}
                   </h3>
                   <div className="mt-2 flex items-center gap-1.5">
                     <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" aria-hidden="true" />
-                    <span className="text-sm font-medium">{product.rating}</span>
-                    <span className="text-xs text-muted">({product.reviews})</span>
+                    <span className="text-sm font-medium text-white">{product.rating}</span>
+                    <span className="text-xs text-dark-muted">({product.reviews})</span>
                   </div>
                   <div className="mt-3 flex items-center justify-between">
-                    <span className="text-lg font-bold">${product.price.toFixed(2)}</span>
+                    <span className="text-lg font-bold text-white">${product.price.toFixed(2)}</span>
                     <button
                       onClick={() => addToCart(product.id)}
-                      className="px-4 py-2 rounded-full bg-primary text-on-primary text-xs font-semibold hover:bg-primary-dark transition-colors duration-200"
+                      className="px-4 py-2 rounded-full bg-cta-green text-dark-bg text-xs font-bold hover:bg-cta-green/90 transition-colors duration-200"
                     >
                       Add to Cart
                     </button>
@@ -158,9 +154,9 @@ export default function Shop() {
         </div>
 
         {filtered.length === 0 && (
-          <div className="text-center py-20 text-muted">
+          <div className="text-center py-20 text-dark-muted">
             <ShoppingBag className="h-12 w-12 mx-auto mb-4 opacity-30" aria-hidden="true" />
-            <p className="text-lg font-medium">No products found</p>
+            <p className="text-lg font-medium text-white">No products found</p>
             <p className="text-sm mt-1">Try a different search or category.</p>
           </div>
         )}
