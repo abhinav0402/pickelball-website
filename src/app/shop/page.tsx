@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ShoppingBag, Star, Filter, Search, ShoppingCart, Disc, CircleDot, Footprints, Backpack } from "lucide-react";
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
 
 type Product = {
@@ -14,18 +15,19 @@ type Product = {
   category: string;
   badge?: string;
   icon: React.ElementType;
+  image?: string;
 };
 
 const products: Product[] = [
-  { id: 1, name: "Joola Ben Johns Hyperion CFS 16", brand: "JOOLA", price: 219.99, rating: 4.9, reviews: 342, category: "Paddles", badge: "Best Seller", icon: Disc },
-  { id: 2, name: "Selkirk Vanguard Power Air", brand: "Selkirk", price: 199.99, rating: 4.8, reviews: 218, category: "Paddles", icon: Disc },
-  { id: 3, name: "CRBN-1X Power Series", brand: "CRBN", price: 179.99, rating: 4.7, reviews: 156, category: "Paddles", badge: "New", icon: Disc },
-  { id: 4, name: "Engage Pursuit Pro MX", brand: "Engage", price: 189.99, rating: 4.6, reviews: 124, category: "Paddles", icon: Disc },
+  { id: 1, name: "Joola Ben Johns Hyperion CFS 16", brand: "JOOLA", price: 219.99, rating: 4.9, reviews: 342, category: "Paddles", badge: "Best Seller", icon: Disc, image: "/images/shop-paddle-net.jpg" },
+  { id: 2, name: "Selkirk Vanguard Power Air", brand: "Selkirk", price: 199.99, rating: 4.8, reviews: 218, category: "Paddles", icon: Disc, image: "/images/shop-paddle-luxe.jpg" },
+  { id: 3, name: "CRBN-1X Power Series", brand: "CRBN", price: 179.99, rating: 4.7, reviews: 156, category: "Paddles", badge: "New", icon: Disc, image: "/images/shop-paddle-fence.jpg" },
+  { id: 4, name: "Engage Pursuit Pro MX", brand: "Engage", price: 189.99, rating: 4.6, reviews: 124, category: "Paddles", icon: Disc, image: "/images/shop-paddle-franklin.jpg" },
   { id: 5, name: "Franklin X-40 Outdoor Balls (12)", brand: "Franklin", price: 24.99, rating: 4.8, reviews: 567, category: "Balls", badge: "Best Seller", icon: CircleDot },
   { id: 6, name: "Dura Fast 40 Outdoor (12)", brand: "Onix", price: 29.99, rating: 4.7, reviews: 389, category: "Balls", icon: CircleDot },
   { id: 7, name: "K-Swiss Express Light Court Shoe", brand: "K-Swiss", price: 89.99, rating: 4.5, reviews: 203, category: "Shoes", icon: Footprints },
   { id: 8, name: "ASICS Gel-Renma Pickleball Shoe", brand: "ASICS", price: 109.99, rating: 4.7, reviews: 178, category: "Shoes", badge: "Popular", icon: Footprints },
-  { id: 9, name: "Pickleball Paddle Cover Pro", brand: "DinkZone", price: 19.99, rating: 4.4, reviews: 98, category: "Accessories", icon: Backpack },
+  { id: 9, name: "Pickleball Paddle Cover Pro", brand: "DinkZone", price: 19.99, rating: 4.4, reviews: 98, category: "Accessories", icon: Backpack, image: "/images/shop-gear-flatlay.jpg" },
   { id: 10, name: "Overgrip Pack (3 grips)", brand: "Tourna", price: 8.99, rating: 4.6, reviews: 445, category: "Accessories", icon: Disc },
   { id: 11, name: "Sports Duffle Bag", brand: "DinkZone", price: 49.99, rating: 4.3, reviews: 67, category: "Accessories", badge: "Exclusive", icon: Backpack },
   { id: 12, name: "Cooling Towel Pack (2)", brand: "Mission", price: 14.99, rating: 4.5, reviews: 234, category: "Accessories", icon: Backpack },
@@ -56,7 +58,7 @@ export default function Shop() {
         title="Merchandise"
         subtitle="Top paddles, balls, shoes, and gear — shipped to your door or pick up in store."
         icon={<ShoppingBag className="h-10 w-10 text-cta-green" aria-hidden="true" />}
-        backgroundImage="/images/gear-flatlay.jpg"
+        backgroundImage="/images/shop-hero-paddles.jpg"
       />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
@@ -111,8 +113,18 @@ export default function Shop() {
                 key={product.id}
                 className="group rounded-2xl border border-white/10 bg-dark-surface overflow-hidden hover:border-cta-green/30 hover:shadow-lg hover:shadow-cta-green/5 transition-all duration-200"
               >
-                <div className="relative bg-dark-bg p-8 flex items-center justify-center">
-                  <ProductIcon className="h-16 w-16 text-cta-green/30" aria-hidden="true" />
+                <div className="relative bg-dark-bg flex items-center justify-center overflow-hidden aspect-[4/3]">
+                  {product.image ? (
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    />
+                  ) : (
+                    <ProductIcon className="h-16 w-16 text-cta-green/30" aria-hidden="true" />
+                  )}
                   {product.badge && (
                     <span className={`absolute top-3 right-3 text-xs font-semibold px-2.5 py-1 rounded-full ${
                       product.badge === "Best Seller"
