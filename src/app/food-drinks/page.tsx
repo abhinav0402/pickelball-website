@@ -21,7 +21,7 @@ const menu: MenuItem[] = [
   { id: 2, name: "Berry Blast Smoothie", description: "Mixed berries, yogurt, honey, ice", price: 8.99, category: "Smoothies & Drinks", icon: Coffee, image: "/images/berry-blast-smoothie.jpg" },
   { id: 3, name: "Protein Power Shake", description: "Whey protein, PB, banana, oat milk", price: 9.99, category: "Smoothies & Drinks", icon: Coffee, image: "/images/protein-power-shake.jpg" },
   { id: 4, name: "Fresh Lemonade", description: "House-made lemonade with mint", price: 4.99, category: "Smoothies & Drinks", icon: Coffee, image: "/images/fresh-lemonade.jpg" },
-  { id: 5, name: "Cold Brew Coffee", description: "24-hour cold brew, locally roasted", price: 5.49, category: "Smoothies & Drinks", icon: Coffee },
+  { id: 5, name: "Cold Brew Coffee", description: "24-hour cold brew, locally roasted", price: 5.49, category: "Smoothies & Drinks", icon: Coffee, image: "/images/cold-brew-coffee.jpg" },
   { id: 6, name: "Loaded Nachos", description: "Tortilla chips, cheese, jalapeños, guac, sour cream", price: 12.99, category: "Snacks & Bites", icon: Utensils, popular: true },
   { id: 7, name: "Chicken Tenders Basket", description: "Hand-breaded tenders with fries & dipping sauce", price: 11.99, category: "Snacks & Bites", icon: Utensils },
   { id: 8, name: "Soft Pretzels", description: "Warm pretzels with beer cheese dip", price: 8.99, category: "Snacks & Bites", icon: Utensils },
