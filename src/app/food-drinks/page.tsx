@@ -25,7 +25,7 @@ const menu: MenuItem[] = [
   { id: 6, name: "Loaded Nachos", description: "Tortilla chips, cheese, jalapeños, guac, sour cream", price: 12.99, category: "Snacks & Bites", icon: Utensils, image: "/images/loaded-nachos.jpg", popular: true },
   { id: 7, name: "Chicken Tenders Basket", description: "Hand-breaded tenders with fries & dipping sauce", price: 11.99, category: "Snacks & Bites", icon: Utensils, image: "/images/chicken-tenders-basket.jpg" },
   { id: 8, name: "Soft Pretzels", description: "Warm pretzels with beer cheese dip", price: 8.99, category: "Snacks & Bites", icon: Utensils, image: "/images/soft-pretzels.jpg" },
-  { id: 9, name: "Street Tacos (3)", description: "Choice of carne asada, chicken, or fish", price: 10.99, category: "Snacks & Bites", icon: Utensils },
+  { id: 9, name: "Street Tacos (3)", description: "Choice of carne asada, chicken, or fish", price: 10.99, category: "Snacks & Bites", icon: Utensils, image: "/images/street-tacos.jpg" },
   { id: 10, name: "The Dink Bowl", description: "Grilled chicken, quinoa, avocado, veggies, tahini", price: 13.99, category: "Bowls & Mains", icon: Salad, popular: true },
   { id: 11, name: "Smash Burger", description: "Double patty, American cheese, special sauce, brioche bun", price: 12.99, category: "Bowls & Mains", icon: UtensilsCrossed },
   { id: 12, name: "Poke Bowl", description: "Ahi tuna, sushi rice, edamame, seaweed, ponzu", price: 14.99, category: "Bowls & Mains", icon: Salad },
