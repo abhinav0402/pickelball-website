@@ -23,7 +23,6 @@ const slides: Slide[] = [
       "Austin's premier pickleball venue — courts, chef-driven food, craft drinks, and vibes all under one roof.",
     cta: { label: "Book a Court", href: "/book-court" },
     image: "/images/hero-night-action.jpg",
-    video: "/images/hero-video.mp4",
     gradient: "from-black/80 via-black/50 to-black/30",
   },
   {
@@ -32,7 +31,8 @@ const slides: Slide[] = [
     subtitle:
       "Smash burgers, açaí bowls, craft cocktails & the legendary Pickle Margarita. Eat courtside or grab it to go.",
     cta: { label: "See the Menu", href: "/food-drinks" },
-    image: "/images/hero-night-rally.jpg",
+    video: "/images/hero-video.mp4",
+    image: "/images/food-pizza-light.jpg",
     gradient: "from-black/80 via-black/50 to-black/30",
   },
   {
@@ -65,16 +65,18 @@ export default function HeroCarousel() {
     return () => clearInterval(id);
   }, [paused, next]);
 
+  const videoSlideIndex = slides.findIndex((s) => s.video);
+
   useEffect(() => {
     if (videoRef.current) {
-      if (current === 0) {
+      if (current === videoSlideIndex) {
         videoRef.current.currentTime = 0;
         videoRef.current.play().catch(() => {});
       } else {
         videoRef.current.pause();
       }
     }
-  }, [current]);
+  }, [current, videoSlideIndex]);
 
   return (
     <section
@@ -93,7 +95,7 @@ export default function HeroCarousel() {
           }`}
           aria-hidden={i !== current}
         >
-          {s.video && i === 0 ? (
+          {s.video ? (
             <video
               ref={videoRef}
               className="absolute inset-0 w-full h-full object-cover"
