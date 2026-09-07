@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { UtensilsCrossed, Coffee, Salad, IceCreamCone, Beer, Plus, Minus, ShoppingCart, Utensils, Wine, CakeSlice } from "lucide-react";
 import PageHero from "@/components/PageHero";
 
@@ -11,11 +12,12 @@ type MenuItem = {
   price: number;
   category: string;
   icon: React.ElementType;
+  image?: string;
   popular?: boolean;
 };
 
 const menu: MenuItem[] = [
-  { id: 1, name: "Green Machine Smoothie", description: "Spinach, banana, mango, coconut water", price: 8.99, category: "Smoothies & Drinks", icon: Coffee, popular: true },
+  { id: 1, name: "Green Machine Smoothie", description: "Spinach, banana, mango, coconut water", price: 8.99, category: "Smoothies & Drinks", icon: Coffee, image: "/images/green-machine-smoothie.jpg", popular: true },
   { id: 2, name: "Berry Blast Smoothie", description: "Mixed berries, yogurt, honey, ice", price: 8.99, category: "Smoothies & Drinks", icon: Coffee },
   { id: 3, name: "Protein Power Shake", description: "Whey protein, PB, banana, oat milk", price: 9.99, category: "Smoothies & Drinks", icon: Coffee },
   { id: 4, name: "Fresh Lemonade", description: "House-made lemonade with mint", price: 4.99, category: "Smoothies & Drinks", icon: Coffee },
@@ -143,9 +145,21 @@ export default function FoodDrinks() {
                       key={item.id}
                       className="flex gap-4 p-5 rounded-2xl border border-white/10 bg-dark-surface hover:border-cta-green/30 hover:shadow-md transition-all duration-200"
                     >
-                      <div className="shrink-0 mt-1 p-2 rounded-xl bg-cta-green/10">
-                        <ItemIcon className="h-6 w-6 text-cta-green" aria-hidden="true" />
-                      </div>
+                      {item.image ? (
+                        <div className="shrink-0 relative h-16 w-16 rounded-xl overflow-hidden">
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            fill
+                            className="object-cover"
+                            sizes="64px"
+                          />
+                        </div>
+                      ) : (
+                        <div className="shrink-0 mt-1 p-2 rounded-xl bg-cta-green/10">
+                          <ItemIcon className="h-6 w-6 text-cta-green" aria-hidden="true" />
+                        </div>
+                      )}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-2">
                           <div>
