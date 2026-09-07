@@ -118,7 +118,7 @@ export default function Programs() {
         title="Pickleball Programs"
         subtitle="Open play, clinics, leagues, and private lessons — we've got a program for every level and every schedule."
         icon={<Volleyball className="h-10 w-10 text-cta-green" aria-hidden="true" />}
-        backgroundImage="/images/hero-night-action.jpg"
+        backgroundImage="/images/programs-outdoor-player.jpg"
       />
 
       {/* Programs Grid */}

@@ -61,10 +61,10 @@ const bookingTypes = [
 type BookingType = (typeof bookingTypes)[number]["id"];
 
 const classes = [
-  { id: 1, title: "Beginner Fundamentals", day: "Saturday", time: "9:00 AM", court: 3, instructor: "Coach Maria Alvarez", level: "Beginner", spotsLeft: 4, capacity: 10, price: "$25" },
-  { id: 2, title: "Intermediate Strategy", day: "Tuesday", time: "6:00 PM", court: 1, instructor: "Coach James Chen", level: "Intermediate", spotsLeft: 2, capacity: 8, price: "$30" },
-  { id: 3, title: "Advanced Drills", day: "Thursday", time: "7:00 PM", court: 9, instructor: "Coach James Chen", level: "Advanced", spotsLeft: 6, capacity: 8, price: "$35" },
-  { id: 4, title: "Junior Clinic (Ages 8-17)", day: "Sunday", time: "11:00 AM", court: 14, instructor: "Coach Priya Nair", level: "All Levels", spotsLeft: 8, capacity: 12, price: "$20" },
+  { id: 1, title: "Beginner Fundamentals", day: "Saturday", time: "9:00 AM", court: 12, instructor: "Coach Maria Alvarez", level: "Beginner", spotsLeft: 4, capacity: 10, price: "$25" },
+  { id: 2, title: "Intermediate Strategy", day: "Tuesday", time: "6:00 PM", court: 15, instructor: "Coach James Chen", level: "Intermediate", spotsLeft: 2, capacity: 8, price: "$30" },
+  { id: 3, title: "Advanced Drills", day: "Thursday", time: "7:00 PM", court: 18, instructor: "Coach James Chen", level: "Advanced", spotsLeft: 6, capacity: 8, price: "$35" },
+  { id: 4, title: "Junior Clinic (Ages 8-17)", day: "Sunday", time: "11:00 AM", court: 20, instructor: "Coach Priya Nair", level: "All Levels", spotsLeft: 8, capacity: 12, price: "$20" },
 ];
 
 const coaches = [
