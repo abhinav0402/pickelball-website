@@ -76,8 +76,6 @@ export default function HeroCarousel() {
     }
   }, [current]);
 
-  const slide = slides[current];
-
   return (
     <section
       className="relative min-h-[600px] lg:min-h-[700px] bg-dark-bg overflow-hidden"
@@ -86,6 +84,7 @@ export default function HeroCarousel() {
       aria-roledescription="carousel"
       aria-label="Featured highlights"
     >
+      {/* Media layer */}
       {slides.map((s, i) => (
         <div
           key={i}
@@ -118,36 +117,60 @@ export default function HeroCarousel() {
         </div>
       ))}
 
-      <div
-        className={`absolute inset-0 bg-gradient-to-r ${slide.gradient} transition-colors duration-700`}
-      />
+      {/* Gradient overlay, crossfaded per slide */}
+      {slides.map((s, i) => (
+        <div
+          key={i}
+          className={`absolute inset-0 bg-gradient-to-r ${s.gradient} transition-opacity duration-700 ease-in-out ${
+            i === current ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      ))}
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center min-h-[600px] lg:min-h-[700px]">
-        <div className="max-w-3xl" role="group" aria-roledescription="slide" aria-label={`Slide ${current + 1} of ${slides.length}`}>
-          <h1 className="font-[var(--font-display)] text-6xl sm:text-7xl lg:text-9xl text-white tracking-tight leading-[0.9] uppercase drop-shadow-lg">
-            {slide.headline}
-            <br />
-            <span className="text-cta-green">{slide.highlight}</span>
-          </h1>
-          <p className="mt-6 text-lg sm:text-xl text-white/90 leading-relaxed max-w-xl drop-shadow-md">
-            {slide.subtitle}
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4">
-            <Link
-              href={slide.cta.href}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-cta-green text-dark-bg px-8 py-4 text-base font-bold hover:bg-cta-green/90 transition-colors duration-200 shadow-lg"
+      {/* Text content, crossfaded per slide */}
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 min-h-[600px] lg:min-h-[700px]">
+        {slides.map((s, i) => (
+          <div
+            key={i}
+            aria-hidden={i !== current}
+            className={`absolute inset-0 flex items-center px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-in-out ${
+              i === current
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4 pointer-events-none"
+            }`}
+          >
+            <div
+              className="max-w-3xl"
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`Slide ${i + 1} of ${slides.length}`}
             >
-              {slide.cta.label}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-            <Link
-              href="/about"
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white px-8 py-4 text-base font-semibold hover:bg-white/10 transition-colors duration-200"
-            >
-              Our Story
-            </Link>
+              <h1 className="font-[var(--font-display)] text-6xl sm:text-7xl lg:text-9xl text-white tracking-tight leading-[0.9] uppercase drop-shadow-lg">
+                {s.headline}
+                <br />
+                <span className="text-cta-green">{s.highlight}</span>
+              </h1>
+              <p className="mt-6 text-lg sm:text-xl text-white/90 leading-relaxed max-w-xl drop-shadow-md">
+                {s.subtitle}
+              </p>
+              <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                <Link
+                  href={s.cta.href}
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-cta-green text-dark-bg px-8 py-4 text-base font-bold hover:bg-cta-green/90 transition-colors duration-200 shadow-lg"
+                >
+                  {s.cta.label}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+                <Link
+                  href="/about"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 text-white px-8 py-4 text-base font-semibold hover:bg-white/10 transition-colors duration-200"
+                >
+                  Our Story
+                </Link>
+              </div>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4">

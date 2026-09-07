@@ -103,7 +103,7 @@ export default function Shop() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div key={category} className="animate-content-fade-in grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filtered.map((product) => {
             const ProductIcon = product.icon;
             return (
@@ -143,7 +143,7 @@ export default function Shop() {
                     <span className="text-lg font-bold text-white">${product.price.toFixed(2)}</span>
                     <button
                       onClick={() => addToCart(product.id)}
-                      className="px-4 py-2 rounded-full bg-cta-green text-dark-bg text-xs font-bold hover:bg-cta-green/90 transition-colors duration-200"
+                      className="px-4 py-2 rounded-full bg-cta-green text-dark-bg text-xs font-bold hover:bg-cta-green/90 transition-all duration-150 ease-out active:scale-[0.96]"
                     >
                       Add to Cart
                     </button>

@@ -102,7 +102,7 @@ export default function FoodDrinks() {
               })}
 
               {orderCount > 0 && (
-                <div className="mt-6 rounded-2xl bg-dark-surface border border-cta-green/20 p-5">
+                <div className="animate-reveal-in mt-6 rounded-2xl bg-dark-surface border border-cta-green/20 p-5">
                   <div className="flex items-center gap-2 font-semibold text-white">
                     <ShoppingCart className="h-4 w-4 text-cta-green" aria-hidden="true" />
                     Your Order ({orderCount})
@@ -133,7 +133,7 @@ export default function FoodDrinks() {
 
           <div className="lg:col-span-3">
             <h2 className="font-[var(--font-display)] text-3xl text-white mb-6 uppercase">{activeCategory}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div key={activeCategory} className="animate-content-fade-in grid grid-cols-1 sm:grid-cols-2 gap-4">
               {menu
                 .filter((m) => m.category === activeCategory)
                 .map((item) => {
@@ -168,7 +168,7 @@ export default function FoodDrinks() {
                                 <button
                                   onClick={() => updateOrder(item.id, -1)}
                                   aria-label={`Remove one ${item.name}`}
-                                  className="p-1.5 rounded-full bg-dark-bg hover:bg-white/10 text-white transition-colors duration-200"
+                                  className="p-1.5 rounded-full bg-dark-bg hover:bg-white/10 text-white transition-all duration-150 ease-out active:scale-[0.96]"
                                 >
                                   <Minus className="h-3.5 w-3.5" aria-hidden="true" />
                                 </button>
@@ -178,7 +178,7 @@ export default function FoodDrinks() {
                                 <button
                                   onClick={() => updateOrder(item.id, 1)}
                                   aria-label={`Add another ${item.name}`}
-                                  className="p-1.5 rounded-full bg-cta-green text-dark-bg hover:bg-cta-green/90 transition-colors duration-200"
+                                  className="p-1.5 rounded-full bg-cta-green text-dark-bg hover:bg-cta-green/90 transition-all duration-150 ease-out active:scale-[0.96]"
                                 >
                                   <Plus className="h-3.5 w-3.5" aria-hidden="true" />
                                 </button>
@@ -187,7 +187,7 @@ export default function FoodDrinks() {
                               <button
                                 onClick={() => updateOrder(item.id, 1)}
                                 aria-label={`Add ${item.name} to order`}
-                                className="px-4 py-1.5 rounded-full bg-cta-green text-dark-bg text-xs font-bold hover:bg-cta-green/90 transition-colors duration-200"
+                                className="px-4 py-1.5 rounded-full bg-cta-green text-dark-bg text-xs font-bold hover:bg-cta-green/90 transition-all duration-150 ease-out active:scale-[0.96]"
                               >
                                 Add
                               </button>

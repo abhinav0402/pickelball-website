@@ -272,8 +272,8 @@ export default function Events() {
           </div>
 
           {submitted ? (
-            <div className="rounded-2xl bg-dark-surface border border-cta-green/30 p-10 text-center">
-              <CheckCircle2 className="h-12 w-12 text-cta-green mx-auto" aria-hidden="true" />
+            <div className="animate-card-pop-in rounded-2xl bg-dark-surface border border-cta-green/30 p-10 text-center">
+              <CheckCircle2 className="animate-icon-pop-in h-12 w-12 text-cta-green mx-auto" aria-hidden="true" />
               <h3 className="mt-4 text-xl font-bold text-white">
                 We Got Your Request!
               </h3>

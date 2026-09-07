@@ -47,15 +47,23 @@ export default function Navbar() {
             className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors duration-200"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
           >
             {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
       </div>
 
-      {mobileOpen && (
-        <div className="lg:hidden border-t border-white/10 bg-[#111111]">
-          <div className="px-4 py-3 space-y-1">
+      <div
+        id="mobile-menu"
+        inert={!mobileOpen}
+        className={`lg:hidden grid transition-[grid-template-rows,opacity] duration-200 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+          mobileOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="border-t border-white/10 bg-[#111111] px-4 py-3 space-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -75,7 +83,7 @@ export default function Navbar() {
             </Link>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }
