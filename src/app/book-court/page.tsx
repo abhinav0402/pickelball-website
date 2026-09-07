@@ -61,10 +61,10 @@ const bookingTypes = [
 type BookingType = (typeof bookingTypes)[number]["id"];
 
 const classes = [
-  { id: 1, title: "Beginner Fundamentals", day: "Saturday", time: "9:00 AM", instructor: "Coach Maria Alvarez", level: "Beginner", spotsLeft: 4, capacity: 10, price: "$25" },
-  { id: 2, title: "Intermediate Strategy", day: "Tuesday", time: "6:00 PM", instructor: "Coach James Chen", level: "Intermediate", spotsLeft: 2, capacity: 8, price: "$30" },
-  { id: 3, title: "Advanced Drills", day: "Thursday", time: "7:00 PM", instructor: "Coach James Chen", level: "Advanced", spotsLeft: 6, capacity: 8, price: "$35" },
-  { id: 4, title: "Junior Clinic (Ages 8-17)", day: "Sunday", time: "11:00 AM", instructor: "Coach Priya Nair", level: "All Levels", spotsLeft: 8, capacity: 12, price: "$20" },
+  { id: 1, title: "Beginner Fundamentals", day: "Saturday", time: "9:00 AM", court: 3, instructor: "Coach Maria Alvarez", level: "Beginner", spotsLeft: 4, capacity: 10, price: "$25" },
+  { id: 2, title: "Intermediate Strategy", day: "Tuesday", time: "6:00 PM", court: 1, instructor: "Coach James Chen", level: "Intermediate", spotsLeft: 2, capacity: 8, price: "$30" },
+  { id: 3, title: "Advanced Drills", day: "Thursday", time: "7:00 PM", court: 9, instructor: "Coach James Chen", level: "Advanced", spotsLeft: 6, capacity: 8, price: "$35" },
+  { id: 4, title: "Junior Clinic (Ages 8-17)", day: "Sunday", time: "11:00 AM", court: 14, instructor: "Coach Priya Nair", level: "All Levels", spotsLeft: 8, capacity: 12, price: "$20" },
 ];
 
 const coaches = [
@@ -97,6 +97,12 @@ export default function BookCourt() {
   const court = courts.find((c) => c.id === selectedCourt);
   const selectedClassInfo = classes.find((c) => c.id === selectedClass);
   const coach = coaches.find((c) => c.id === selectedCoach);
+
+  const selectedWeekday = format(selectedDate, "EEEE");
+  const classBlockingCourt = (courtId: number, slot: string) =>
+    classes.find(
+      (c) => c.court === courtId && c.day === selectedWeekday && c.time === slot
+    );
 
   return (
     <div className="bg-dark-bg min-h-screen">
@@ -299,22 +305,45 @@ export default function BookCourt() {
                 <legend className="text-lg font-semibold flex items-center gap-2 text-white">
                   <Clock className="h-5 w-5 text-cta-green" aria-hidden="true" /> Select Time
                 </legend>
+                {bookingType === "court" && (
+                  <div className="mt-2 flex flex-wrap gap-4 text-xs text-dark-muted">
+                    <span className="flex items-center gap-1.5">
+                      <span className="h-2.5 w-2.5 rounded-full bg-red-900/60" aria-hidden="true" /> Already booked
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <span className="h-2.5 w-2.5 rounded-full bg-amber-500/60" aria-hidden="true" /> Closed for class
+                    </span>
+                  </div>
+                )}
                 <div className="mt-4 grid grid-cols-4 sm:grid-cols-8 gap-2" role="radiogroup" aria-label="Select time">
                   {timeSlots.map((slot) => {
                     const key =
                       bookingType === "lesson" ? `${coach?.name}-${slot}` : `${court?.name}-${slot}`;
-                    const taken =
+                    const booked =
                       bookingType === "lesson" ? coachTakenSlots.has(key) : takenSlots.has(key);
+                    const classBlock =
+                      bookingType === "court" && court ? classBlockingCourt(court.id, slot) : undefined;
+                    const closedForClass = !!classBlock;
+                    const unavailable = booked || closedForClass;
                     return (
                       <button
                         key={slot}
-                        disabled={taken}
+                        disabled={unavailable}
                         onClick={() => setSelectedTime(slot)}
                         role="radio"
                         aria-checked={selectedTime === slot}
-                        aria-label={`${slot}${taken ? " (unavailable)" : ""}`}
+                        aria-label={`${slot}${
+                          closedForClass
+                            ? ` (closed for ${classBlock?.title})`
+                            : booked
+                            ? " (unavailable)"
+                            : ""
+                        }`}
+                        title={closedForClass ? `Closed for ${classBlock?.title}` : undefined}
                         className={`py-2.5 px-2 rounded-lg text-xs font-medium transition-colors duration-200 ${
-                          taken
+                          closedForClass
+                            ? "bg-amber-900/30 text-amber-400/60 line-through"
+                            : booked
                             ? "bg-red-900/30 text-red-400/50 line-through"
                             : selectedTime === slot
                             ? "bg-cta-green text-dark-bg"
