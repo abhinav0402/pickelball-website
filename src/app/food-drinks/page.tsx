@@ -29,7 +29,7 @@ const menu: MenuItem[] = [
   { id: 10, name: "The Dink Bowl", description: "Grilled chicken, quinoa, avocado, veggies, tahini", price: 13.99, category: "Bowls & Mains", icon: Salad, image: "/images/dink-bowl.jpg", popular: true },
   { id: 11, name: "Smash Burger", description: "Double patty, American cheese, special sauce, brioche bun", price: 12.99, category: "Bowls & Mains", icon: UtensilsCrossed, image: "/images/smash-burger.jpg" },
   { id: 12, name: "Poke Bowl", description: "Ahi tuna, sushi rice, edamame, seaweed, ponzu", price: 14.99, category: "Bowls & Mains", icon: Salad, image: "/images/poke-bowl.jpg" },
-  { id: 13, name: "Veggie Wrap", description: "Hummus, roasted veggies, feta, mixed greens", price: 10.99, category: "Bowls & Mains", icon: UtensilsCrossed },
+  { id: 13, name: "Veggie Wrap", description: "Hummus, roasted veggies, feta, mixed greens", price: 10.99, category: "Bowls & Mains", icon: UtensilsCrossed, image: "/images/veggie-wrap.jpg" },
   { id: 14, name: "Local IPA Draft", description: "Rotating local craft IPA on tap", price: 7.99, category: "Beer & Wine", icon: Beer },
   { id: 15, name: "House Lager", description: "Crisp, refreshing house lager", price: 5.99, category: "Beer & Wine", icon: Beer },
   { id: 16, name: "Glass of Wine", description: "Choose from our curated wine list", price: 8.99, category: "Beer & Wine", icon: Wine },
