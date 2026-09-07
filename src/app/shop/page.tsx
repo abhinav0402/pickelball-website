@@ -25,12 +25,12 @@ const products: Product[] = [
   { id: 4, name: "Engage Pursuit Pro MX", brand: "Engage", price: 189.99, rating: 4.6, reviews: 124, category: "Paddles", icon: Disc, image: "/images/shop-paddle-franklin.jpg" },
   { id: 5, name: "Franklin X-40 Outdoor Balls (12)", brand: "Franklin", price: 24.99, rating: 4.8, reviews: 567, category: "Balls", badge: "Best Seller", icon: CircleDot, image: "/images/shop-hero-paddles.jpg" },
   { id: 6, name: "Dura Fast 40 Outdoor (12)", brand: "Onix", price: 29.99, rating: 4.7, reviews: 389, category: "Balls", icon: CircleDot, image: "/images/shop-gear-flatlay.jpg" },
-  { id: 7, name: "K-Swiss Express Light Court Shoe", brand: "K-Swiss", price: 89.99, rating: 4.5, reviews: 203, category: "Shoes", icon: Footprints },
-  { id: 8, name: "ASICS Gel-Renma Pickleball Shoe", brand: "ASICS", price: 109.99, rating: 4.7, reviews: 178, category: "Shoes", badge: "Popular", icon: Footprints },
+  { id: 7, name: "K-Swiss Express Light Court Shoe", brand: "K-Swiss", price: 89.99, rating: 4.5, reviews: 203, category: "Shoes", icon: Footprints, image: "/images/shop-shoes-lacing.jpg" },
+  { id: 8, name: "ASICS Gel-Renma Pickleball Shoe", brand: "ASICS", price: 109.99, rating: 4.7, reviews: 178, category: "Shoes", badge: "Popular", icon: Footprints, image: "/images/shop-shoes-group.jpg" },
   { id: 9, name: "Pickleball Paddle Cover Pro", brand: "DinkZone", price: 19.99, rating: 4.4, reviews: 98, category: "Accessories", icon: Backpack, image: "/images/shop-gear-flatlay.jpg" },
-  { id: 10, name: "Overgrip Pack (3 grips)", brand: "Tourna", price: 8.99, rating: 4.6, reviews: 445, category: "Accessories", icon: Disc },
-  { id: 11, name: "Sports Duffle Bag", brand: "DinkZone", price: 49.99, rating: 4.3, reviews: 67, category: "Accessories", badge: "Exclusive", icon: Backpack },
-  { id: 12, name: "Cooling Towel Pack (2)", brand: "Mission", price: 14.99, rating: 4.5, reviews: 234, category: "Accessories", icon: Backpack },
+  { id: 10, name: "Overgrip Pack (3 grips)", brand: "Tourna", price: 8.99, rating: 4.6, reviews: 445, category: "Accessories", icon: Disc, image: "/images/shop-overgrip.jpg" },
+  { id: 11, name: "Sports Duffle Bag", brand: "DinkZone", price: 49.99, rating: 4.3, reviews: 67, category: "Accessories", badge: "Exclusive", icon: Backpack, image: "/images/shop-duffle.jpg" },
+  { id: 12, name: "Cooling Towel Pack (2)", brand: "Mission", price: 14.99, rating: 4.5, reviews: 234, category: "Accessories", icon: Backpack, image: "/images/shop-towel.jpg" },
 ];
 
 const categories = ["All", "Paddles", "Balls", "Shoes", "Accessories"];
