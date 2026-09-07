@@ -18,7 +18,7 @@ type MenuItem = {
 
 const menu: MenuItem[] = [
   { id: 1, name: "Green Machine Smoothie", description: "Spinach, banana, mango, coconut water", price: 8.99, category: "Smoothies & Drinks", icon: Coffee, image: "/images/green-machine-smoothie.jpg", popular: true },
-  { id: 2, name: "Berry Blast Smoothie", description: "Mixed berries, yogurt, honey, ice", price: 8.99, category: "Smoothies & Drinks", icon: Coffee },
+  { id: 2, name: "Berry Blast Smoothie", description: "Mixed berries, yogurt, honey, ice", price: 8.99, category: "Smoothies & Drinks", icon: Coffee, image: "/images/berry-blast-smoothie.jpg" },
   { id: 3, name: "Protein Power Shake", description: "Whey protein, PB, banana, oat milk", price: 9.99, category: "Smoothies & Drinks", icon: Coffee },
   { id: 4, name: "Fresh Lemonade", description: "House-made lemonade with mint", price: 4.99, category: "Smoothies & Drinks", icon: Coffee },
   { id: 5, name: "Cold Brew Coffee", description: "24-hour cold brew, locally roasted", price: 5.49, category: "Smoothies & Drinks", icon: Coffee },
