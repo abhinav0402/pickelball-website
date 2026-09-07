@@ -17,11 +17,11 @@ export default function PageHero({ title, subtitle, icon, backgroundImage }: Pag
             src={backgroundImage}
             alt=""
             fill
-            className="object-cover opacity-50"
+            className="object-cover"
             priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-dark-bg/90 via-dark-bg/60 to-dark-bg/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
         </>
       )}
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
