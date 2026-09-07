@@ -58,6 +58,7 @@ export default function BookCourt() {
         title="Book a Court"
         subtitle="12 courts available — indoor and outdoor. Reserve your spot in seconds."
         icon={<CalendarCheck className="h-10 w-10 text-cta-green" aria-hidden="true" />}
+        backgroundImage="/images/hero-night-rally.jpg"
       />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">

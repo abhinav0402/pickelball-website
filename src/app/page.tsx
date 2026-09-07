@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   Star,
   ArrowRight,
@@ -134,19 +135,28 @@ export default function Home() {
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
-            <div className="rounded-2xl bg-dark-surface p-10 border border-white/10">
-              <UtensilsCrossed className="h-16 w-16 text-cta-green/30 mb-6" aria-hidden="true" />
-              <div className="space-y-4">
-                {["The Dink Bowl", "Smash Burger", "Pickle Margarita", "Loaded Nachos"].map((item) => (
-                  <div key={item} className="flex items-center gap-3 text-white/80">
-                    <span className="h-1.5 w-1.5 rounded-full bg-cta-green shrink-0" />
-                    <span className="font-medium">{item}</span>
-                  </div>
-                ))}
+            <div className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[4/3]">
+              <Image
+                src="/images/food-pizza-light.jpg"
+                alt="Fresh pizza served at DinkZone"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <div className="flex flex-wrap gap-2">
+                  {["The Dink Bowl", "Smash Burger", "Pickle Margarita", "Loaded Nachos"].map((item) => (
+                    <span key={item} className="inline-flex items-center gap-1.5 rounded-full bg-black/50 backdrop-blur-sm px-3 py-1.5 text-xs font-medium text-white">
+                      <span className="h-1.5 w-1.5 rounded-full bg-cta-green shrink-0" />
+                      {item}
+                    </span>
+                  ))}
+                </div>
+                <p className="mt-3 text-sm text-white/70">
+                  &hellip;and 15+ more items on the menu.
+                </p>
               </div>
-              <p className="mt-6 text-sm text-dark-muted">
-                &hellip;and 15+ more items on the menu.
-              </p>
             </div>
           </div>
         </div>

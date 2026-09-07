@@ -133,6 +133,7 @@ export default function Events() {
         title="Plan Your Event"
         subtitle="From birthday bashes to corporate outings — we've got flexible spaces, full catering, and a team that makes it all happen."
         icon={<PartyPopper className="h-10 w-10 text-cta-green" aria-hidden="true" />}
+        backgroundImage="/images/hero-night-rally.jpg"
       />
 
       {/* Event Types */}

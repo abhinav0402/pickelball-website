@@ -56,6 +56,7 @@ export default function Shop() {
         title="Merchandise"
         subtitle="Top paddles, balls, shoes, and gear — shipped to your door or pick up in store."
         icon={<ShoppingBag className="h-10 w-10 text-cta-green" aria-hidden="true" />}
+        backgroundImage="/images/gear-flatlay.jpg"
       />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
