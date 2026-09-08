@@ -35,7 +35,7 @@ const menu: MenuItem[] = [
   { id: 16, name: "Glass of Wine", description: "Choose from our curated wine list", price: 8.99, category: "Beer & Wine", icon: Wine, image: "/images/glass-of-wine.jpg" },
   { id: 17, name: "The Pickle Margarita", description: "Tequila, pickle brine, lime, tajín rim", price: 11.99, category: "Beer & Wine", icon: Wine, image: "/images/pickle-margarita.jpg", popular: true },
   { id: 18, name: "Açaí Bowl", description: "Açaí, granola, banana, berries, honey drizzle", price: 11.99, category: "Desserts", icon: CakeSlice, image: "/images/acai-bowl.jpg" },
-  { id: 19, name: "Cookie Skillet", description: "Fresh-baked chocolate chip cookie with vanilla ice cream", price: 8.99, category: "Desserts", icon: IceCreamCone },
+  { id: 19, name: "Cookie Skillet", description: "Fresh-baked chocolate chip cookie with vanilla ice cream", price: 8.99, category: "Desserts", icon: IceCreamCone, image: "/images/cookie-skillet.jpg" },
 ];
 
 const categoryIcons: Record<string, React.ElementType> = {
